@@ -1,0 +1,341 @@
+/* The path keeps the running figures below the union's text. */
+.union {
+  align-content: center;
+  gap: clamp(14px, 4cqi, 25px);
+}
+
+.garden-scene {
+  position: relative;
+  isolation: isolate;
+  width: min(100%, 660px);
+  height: clamp(112px, 30vw, 156px);
+  overflow: clip;
+}
+
+.garden-scene::before {
+  position: absolute;
+  z-index: -1;
+  inset: auto 6% 6% 6%;
+  height: 22%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgb(183 128 69 / 0.2), transparent 68%);
+  content: '';
+}
+
+.garden-trim {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 3%;
+  width: 25%;
+  height: 33%;
+  background: var(--flower-garland) left bottom / auto 86% no-repeat;
+  mask-image: linear-gradient(90deg, #000 65%, transparent);
+}
+
+.garden-trim.right {
+  right: 3%;
+  left: auto;
+  scale: -1 1;
+}
+
+.garden-track {
+  --runner-position: 57%;
+  position: absolute;
+  inset: 0;
+}
+
+.garden-track.girl {
+  --runner-position: 32%;
+}
+
+.garden-runner {
+  position: absolute;
+  left: var(--runner-position);
+  bottom: 9%;
+  display: block;
+  height: 80%;
+  translate: -50% 0;
+}
+
+.garden-runner .guest-avatar {
+  width: auto;
+  height: 100%;
+  max-width: none;
+  filter: drop-shadow(0 5px 5px rgb(100 65 40 / 0.17));
+  transform-origin: 50% 85%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .garden-scene.celebration-visible .garden-track {
+    animation: across-garden 7.4s -1.4s linear infinite;
+  }
+
+  .garden-scene.celebration-visible .garden-runner .guest-avatar {
+    animation: running-stride 420ms ease-in-out infinite;
+  }
+
+  .garden-scene.celebration-visible .garden-track.girl .guest-avatar {
+    animation-delay: -160ms;
+  }
+}
+
+@keyframes across-garden {
+  0% { translate: -61% 0; opacity: 0; }
+  9% { opacity: 1; }
+  66% { opacity: 1; }
+  79%, 100% { translate: 79% 0; opacity: 0; }
+}
+
+@keyframes running-stride {
+  0%, 100% { transform: translateY(1px) rotate(-2deg) scale(1.035, 0.97); }
+  52% { transform: translateY(-6px) rotate(2deg) scale(0.98, 1.025); }
+}
+
+/* Small dholki vignette before the celebration timeline. */
+.dholki-scene {
+  --guest-height: clamp(103px, 31vw, 194px);
+  display: grid;
+  justify-items: center;
+  gap: 0.68rem;
+  width: min(700px, calc(100% - 2rem));
+  margin: clamp(1.3rem, 4vw, 2.2rem) auto 0;
+}
+
+.dholki-stage {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-items: end;
+  width: 100%;
+  height: calc(var(--guest-height) + clamp(30px, 6vw, 62px));
+  padding: 0 3% clamp(12px, 2.8vw, 24px);
+  overflow: clip;
+  border: 1px solid rgb(183 135 82 / 0.42);
+  border-radius: 108px 108px 14px 14px / 32px 32px 14px 14px;
+  background:
+    radial-gradient(ellipse at 50% 89%, rgb(168 96 50 / 0.16), transparent 52%),
+    var(--tile) center / 106px,
+    linear-gradient(140deg, #f8e2d3, #fff3db 53%, #f5dacb);
+}
+
+.dholki-stage::after {
+  position: absolute;
+  z-index: -1;
+  inset: auto 8% 6% 8%;
+  height: 13%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgb(145 81 51 / 0.24), transparent 70%);
+  content: '';
+}
+
+.dholki-arch {
+  position: absolute;
+  z-index: -1;
+  inset: 9% 22% -25%;
+  border: 1px solid rgb(163 115 56 / 0.25);
+  border-radius: 50% 50% 0 0 / 67% 67% 0 0;
+  background: linear-gradient(#ffefd5, rgb(255 239 213 / 0) 76%);
+  box-shadow: 0 0 0 5px rgb(247 225 197 / 0.65), 0 0 0 6px rgb(177 127 64 / 0.23);
+}
+
+.dholki-flowers {
+  position: absolute;
+  top: 0;
+  left: -1%;
+  width: 38%;
+  height: 33%;
+  background: var(--flower-garland) left top / auto 76% no-repeat;
+  mask-image: linear-gradient(90deg, #000 50%, transparent);
+}
+
+.dholki-flowers.right {
+  right: -1%;
+  left: auto;
+  scale: -1 1;
+}
+
+.dholki-guests {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: end;
+  width: 100%;
+}
+
+.dholki-guest {
+  --guest-scale: 0.9;
+  --dance-delay: 0s;
+  position: relative;
+  height: calc(var(--guest-height) * var(--guest-scale));
+  transform-origin: 50% 94%;
+}
+
+.dholki-guest.dhol { --guest-scale: 1; --dance-delay: -0.72s; }
+.dholki-guest.dance { --guest-scale: 0.96; --dance-delay: -1.18s; }
+.dholki-guest.roses { --guest-scale: 0.91; --dance-delay: -0.4s; }
+
+.dholki-guest .guest-avatar {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 112%;
+  height: 100%;
+  max-width: none;
+  translate: -50% 0;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 3px 5px rgb(102 52 24 / 0.2));
+}
+
+.dholki-note {
+  position: absolute;
+  top: 15%;
+  right: -1%;
+  color: #a9643b;
+  font: 600 clamp(16px, 4vw, 24px) / 1 var(--display);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.dholki-note.second {
+  top: 29%;
+  right: auto;
+  left: 1%;
+}
+
+.dholki-petal {
+  --petal-drift: -23px;
+  position: absolute;
+  top: 19%;
+  left: 25%;
+  width: clamp(3px, 0.8vw, 5px);
+  height: clamp(5px, 1vw, 7px);
+  border-radius: 80% 25% 70% 45%;
+  background: #a74855;
+  opacity: 0;
+}
+
+.dholki-petal:nth-of-type(2) { --petal-drift: -36px; top: 24%; }
+.dholki-petal:nth-of-type(3) { --petal-drift: 14px; background: #c96d72; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .dholki-scene.celebration-visible .dholki-guest {
+    animation: dholki-sway 2.9s var(--dance-delay) ease-in-out infinite;
+  }
+
+  .dholki-scene.celebration-visible .dholki-note {
+    animation: dholki-note 3.4s ease-out infinite;
+  }
+
+  .dholki-scene.celebration-visible .dholki-note.second {
+    animation-delay: -1.2s;
+  }
+
+  .dholki-scene.celebration-visible.dhol-playing .dholki-guest { animation-duration: 0.94s; }
+  .dholki-scene.celebration-visible.dhol-playing .dholki-note { animation-duration: 1.35s; }
+  .dholki-scene.celebration-visible .dholki-petal { animation: dholki-petals 3.6s ease-out infinite; }
+  .dholki-scene.celebration-visible .dholki-petal:nth-of-type(2) { animation-delay: -1.3s; }
+  .dholki-scene.celebration-visible .dholki-petal:nth-of-type(3) { animation-delay: -2.15s; }
+}
+
+@keyframes dholki-sway {
+  0%, 100% { rotate: -1.5deg; translate: 0 0; }
+  50% { rotate: 1.8deg; translate: 0 -3px; }
+}
+
+@keyframes dholki-note {
+  0%, 5% { opacity: 0; translate: 0 5px; }
+  21% { opacity: 0.84; }
+  62%, 100% { opacity: 0; translate: 6px -25px; }
+}
+
+@keyframes dholki-petals {
+  0%, 8% { opacity: 0; transform: translate(0) rotate(10deg); }
+  19% { opacity: 0.85; }
+  31% { transform: translate(calc(var(--petal-drift) * 0.53), -15px) rotate(91deg); }
+  65%, 100% { opacity: 0; transform: translate(var(--petal-drift), 35px) rotate(208deg); }
+}
+
+.dholki-button,
+.finale-button {
+  min-height: 44px;
+  padding: 0.45rem 1.15rem;
+  border: 1px solid #ad824d;
+  border-radius: 100px;
+  background: #fff9eb;
+  color: #721022;
+  font-family: var(--ui);
+  font-size: 0.89rem;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 180ms, box-shadow 180ms;
+}
+
+.dholki-button:hover,
+.dholki-button:active,
+.dhol-playing .dholki-button {
+  background: #f6e2bd;
+  box-shadow: 0 3px 12px rgb(118 68 41 / 0.17);
+}
+
+/* A dark sky for the fireworks beneath the closing card. */
+.closing-place {
+  margin-bottom: clamp(52px, 14cqi, 82px);
+}
+
+.wedding-finale {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  justify-items: center;
+  align-items: end;
+  width: calc(100% + 14cqi);
+  height: clamp(294px, 45vw, 470px);
+  padding: 0 1rem max(23px, calc(env(safe-area-inset-bottom) + 12px));
+  overflow: clip;
+  border-top: 1px solid #b59257;
+  background:
+    radial-gradient(circle at 12% 20%, #b09393 0.7px, transparent 1px) 0 0 / 90px 67px,
+    radial-gradient(circle at 73% 51%, #b69481 0.5px, transparent 1px) 11px 17px / 113px 82px,
+    radial-gradient(ellipse at 51% 73%, #633b45, transparent 60%),
+    linear-gradient(180deg, #1e1523 14%, #38243a 74%, #482e3a);
+}
+
+.finale-frame {
+  position: absolute;
+  z-index: -1;
+  inset: clamp(10px, 2vw, 24px);
+  border: 1px solid rgb(230 190 123 / 0.34);
+  pointer-events: none;
+}
+
+.finale-palace {
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+  left: 50%;
+  width: min(91%, 766px);
+  translate: -50% 0;
+  mask-image: linear-gradient(#000 50%, transparent 98%);
+  filter: brightness(0.78) saturate(0.78) sepia(0.2);
+  pointer-events: none;
+}
+
+.finale-sky {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.finale-button {
+  border-color: #c5a369;
+  background: #2b1d29;
+  color: #fae2b4;
+}
+
+.finale-button:hover,
+.finale-button:active {
+  background: #533246;
+}
