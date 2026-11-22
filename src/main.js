@@ -226,7 +226,7 @@ q('#app').innerHTML = `
 
   <div class="band" aria-hidden="true"></div>
 
-  <section class="gallery" aria-label="Gallery">
+  <section class="gallery" aria-label="Gallery" hidden>
     <p class="urdu-kicker" lang="ur" dir="rtl">یادگار لمحے</p>
     <h2>Blessed Moments</h2>
     <p class="lead">Every smile, every laugh, every stolen glance, kept forever.</p>

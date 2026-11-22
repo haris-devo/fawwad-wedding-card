@@ -575,7 +575,7 @@ section h2 {
   width: 100%;
   margin: 0.2em 0 0.19em;
   font-family: var(--ur);
-  font-size: clamp(3rem, 12vw, 5.4rem);
+  font-size: clamp(1.9rem, 7vw, 3.1rem);
   font-weight: 500;
   line-height: 1.64;
 }
@@ -621,7 +621,7 @@ section h2 {
     justify-content: center;
     column-gap: 0.54em;
     margin-block: 0.32em 0.1em;
-    font-size: clamp(5.6rem, 8.3vw, 8.7rem);
+    font-size: clamp(3rem, 4.4vw, 4.6rem);
     line-height: 1.92;
   }
 }
